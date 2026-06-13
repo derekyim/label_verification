@@ -74,10 +74,12 @@ export default function QuickStartGuide() {
           Watch a short Loom walkthrough showing how to use both modes end-to-end.
         </Typography>
         <Box className="quick-start-guide-video-container">
-          <Typography color="text.secondary" className="quick-start-guide-video-placeholder">
-            Loom video embed goes here &mdash; replace this placeholder with an
-            {' '}<code>&lt;iframe&gt;</code> from Loom&apos;s share dialog.
-          </Typography>
+          <iframe
+            src="https://www.loom.com/embed/fd960c5f8ea44483831d4dd031289a50"
+            frameBorder="0"
+            allowFullScreen
+            className="quick-start-guide-video-iframe"
+          />
         </Box>
       </AccordionDetails>
     </Accordion>
