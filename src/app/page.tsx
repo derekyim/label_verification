@@ -57,7 +57,7 @@ export default function ExplainerPage() {
         <AccordionDetails>
           <Typography sx={{ mb: 2 }}>
             This landing page showcases the proposed solution for label verification.  There are two verification modes available in the application.
-            The Demo Entrypoints section below enter you into the actual application with one of three modes: 
+            The Start Here section below enter you into the actual application with one of three modes: 
             * Single Mode: Upload one label image and fill in (or auto-fill from a sample) the six TTB-required fields.
             * Batch Mode: Paste or upload a CSV / JSON manifest referencing up to 25 labels at once. The system processes every row and produces a results table you can export as CSV. Ideal for clearing a queue of pending applications in one pass.
             * Sample Mode: Try a sample label. One click. Loads a bundled label and its expected values, then runs the verification.
@@ -131,7 +131,7 @@ export default function ExplainerPage() {
         ))}
       </Stack>
 
-      <Typography variant="h2" sx={{ mb: 3 }}>Demo Entrypoints </Typography>
+      <Typography variant="h2" sx={{ mb: 3 }}>Start Here  </Typography>
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ mb: 6 }}>
         <PathCard
           href="/verify?sample=01_old_tom_bourbon"

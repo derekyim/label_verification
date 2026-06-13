@@ -216,26 +216,68 @@ export default function BatchPage() {
             </Typography>
           ) : (
             <Stack spacing={2}>
-              <Button component="label" variant="outlined" startIcon={<UploadFileIcon />}>
-                Select image files
-                <input
-                  ref={imageInputRef}
-                  type="file"
-                  hidden
-                  multiple
-                  accept="image/png,image/jpeg,image/webp"
-                  onChange={(e) => {
-                    const files = Array.from(e.target.files ?? []);
-                    const map: Record<string, File> = { ...uploadedImages };
-                    for (const f of files) map[f.name] = f;
-                    setUploadedImages(map);
-                  }}
-                />
-              </Button>
-              <Typography variant="body2" color="text.secondary">
-                Files are matched to manifest rows by filename. {rows.length > 0 && (
-                  <>{Object.keys(uploadedImages).length} uploaded · {rows.filter((r) => uploadedImages[r.imageFilename]).length}/{rows.length} matched.</>
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Button component="label" variant="outlined" startIcon={<UploadFileIcon />}>
+                  Select image files
+                  <input
+                    ref={imageInputRef}
+                    type="file"
+                    hidden
+                    multiple
+                    accept="image/png,image/jpeg,image/webp"
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files ?? []);
+                      const map: Record<string, File> = { ...uploadedImages };
+                      for (const f of files) map[f.name] = f;
+                      setUploadedImages(map);
+                      if (imageInputRef.current) imageInputRef.current.value = '';
+                    }}
+                  />
+                </Button>
+                {Object.keys(uploadedImages).length > 0 && (
+                  <Chip
+                    label={`${Object.keys(uploadedImages).length} image${Object.keys(uploadedImages).length === 1 ? '' : 's'} loaded`}
+                    color="primary"
+                    onDelete={() => setUploadedImages({})}
+                  />
                 )}
+                {rows.length > 0 && Object.keys(uploadedImages).length > 0 && (
+                  <Chip
+                    label={`${rows.filter((r) => uploadedImages[r.imageFilename]).length}/${rows.length} matched to manifest`}
+                    color={rows.every((r) => uploadedImages[r.imageFilename]) ? 'success' : 'warning'}
+                    variant="outlined"
+                  />
+                )}
+              </Stack>
+              {Object.keys(uploadedImages).length > 0 && (
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  {Object.keys(uploadedImages).map((name) => {
+                    const matched = rows.length > 0 && rows.some(
+                      (r) => r.imageFilename === name || r.backImageFilename === name,
+                    );
+                    return (
+                      <Chip
+                        key={name}
+                        label={name}
+                        size="small"
+                        variant="outlined"
+                        color={rows.length === 0 ? 'default' : matched ? 'success' : 'warning'}
+                        onDelete={() => {
+                          const next = { ...uploadedImages };
+                          delete next[name];
+                          setUploadedImages(next);
+                        }}
+                      />
+                    );
+                  })}
+                </Box>
+              )}
+              <Typography variant="body2" color="text.secondary">
+                {Object.keys(uploadedImages).length === 0
+                  ? 'Select the label images referenced in your manifest. Files are matched to rows by filename.'
+                  : rows.length === 0
+                    ? 'Images loaded. Now paste or upload a manifest above so filenames can be matched.'
+                    : 'Green chips are matched to a manifest row. Remove unneeded images with the × button.'}
               </Typography>
             </Stack>
           )}

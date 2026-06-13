@@ -1,9 +1,11 @@
 # Take-Home Project: AI-Powered Alcohol Label Verification App
 Submitted by Derek Yimoyines
 
-**Status:** Prototype implemented locally. Vercel deploy pending.
+**Repository:** https://github.com/derekyim/label_verification
 
-**Deployed URL:** _(will be added after first Vercel deploy)_
+**Deployed URL:** https://label-verification-seven.vercel.app/
+
+**Explainer Video:** https://label-verification-seven.vercel.app/
 
 **Local quick start:**
 
@@ -128,7 +130,7 @@ Output: results table with per-row verdict, click-through to the single-verify d
 
 #### Image recognition
 
-**Choice: Gemini 2.0 Flash with structured (JSON-schema) output, accepting one or more images per label.**
+**Choice: Gemini 2.5 with structured (JSON-schema) output, accepting one or more images per label.**
 
 Real-world labels often carry the brand/class/ABV on the front and the Government Warning on the back. The extractor accepts an array of images per call; the bundled "Real photo" samples pass front + back together so the model can extract from both sides in a single round-trip. Synthetic samples (single image) work through the same code path.
 
@@ -217,7 +219,7 @@ pnpm dev
 |---|---|---|
 | `GEMINI_API_KEY` | yes (unless `EXTRACTOR=mock`) | Auth for the default Gemini extractor. Get one at [aistudio.google.com](https://aistudio.google.com/). |
 | `EXTRACTOR` | no | `gemini` (default) or `mock` (offline development; returns canned fixture). |
-| `GEMINI_MODEL` | `gemini-2.5-flash` | Change to the exact model version you want to use |
+| `GEMINI_MODEL` | yes | Change to the exact model version you want to use, currently configured to use `gemini-2.5-flash` |
 
 ### Tests
 
@@ -353,10 +355,14 @@ If this prototype graduated to a real TTB system, the changes I would prioritize
 1. **Swap the extractor to Azure Document Intelligence** to match TTB's Azure infrastructure and stay inside FedRAMP boundaries. The `Extractor` interface is designed for this.
 2. **Replace Vercel with containerized services on Azure** (App Service or AKS), behind TTB's existing network controls. Marcus mentioned the firewall blocks outbound traffic to many cloud ML endpoints — Azure Document Intelligence is in-tenant and avoids that class of failure.
 3. **Add an artifact store + audit log** for every verification: image, extracted fields, comparator output, agent decision, timestamp, agent ID. This is both a compliance and a model-monitoring requirement.
-4. **Move batch to a queue.** In-request fan-out is fine for 25 labels and a demo. For Janet's 200–300 case, the right shape is a job queue with a status page and email-on-completion.
-5. **Pin and regression-test the model.** Maintain a labeled regression set (the bundled `labels/actual/` is the seed). Block model upgrades that regress field-extraction accuracy.
-6. **Beverage-type-aware rules.** Branch the canonical Government Warning text by beverage type. Same for ABV requirements (some wine/beer is exempt).
-7. **Manual-override flow.** Even when the tool flags a row as pass, an agent has the final call. The UI needs a one-click "override + comment" path so the audit log captures human judgment.
+4. **Move batch to a queue.** In-request fan-out is fine for 25 labels and a demo. For Janet's 200–300 case, the right shape is a job queue with a status page and email-on-completion.  This would introduce the need for a notification system or an "email me back when you're done" feature.  This would then lead us to a per-person or per group page of previously executed jobs and their current states.  Within a job of 300 labels the user would quickly want to sort by the important characteristics, 1) what labels pass (hopefully this is the time savings and purpose of the application) 2) which labels hard fail and need to be rejected (see next bullet) 3) which labels need to be reviewed/audited (the system can self-improve here)
+5. **Auto-rejection feedback.** An LLM could be engaged at this step to generate commentary back to the submitter on how to respond to a particular vendor on 'what to fix'.  This would streamline the workflow significantly
+6. **User-Level feedback incorporation for 'reviewed' labels.** If a user consistently has to audit a type of label and accept/reject on common criteron (capitalization, etc), then the user should be able to prompt the system to 'suggest a rule' to help in the future.  This would likely go into the queue to the development team for safe implementation  
+7. **Pin and regression-test the model.** Maintain a labeled regression set (the bundled `labels/actual/` is the seed). Block model upgrades that regress field-extraction accuracy.
+8. **Beverage-type-aware rules.** Branch the canonical Government Warning text by beverage type. Same for ABV requirements (some wine/beer is exempt).
+9. **Manual-override flow.** Even when the tool flags a row as pass, an agent has the final call. The UI needs a one-click "override + comment" path so the audit log captures human judgment.
+10. **Long-Tem Measurement.** I would collect statistics on how to improve this system.  How often is it right or wrong when accepting/rejecting a lable.  Treating this as a binary classification problem, "is the label valid", then we can calculate Recall, Precision and F1 scores to measure system effectiveness and decide how to tune for the future.
+11. **Better Product Tour.** I put a Quick start guide in, with a video explainer, but the requirement of handling very non-technical users would be better satisfied with an AppCues like product
 
 ---
 
