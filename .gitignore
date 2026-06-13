@@ -82,3 +82,4 @@ skills/
 
 # Local-only: copies of labels under public/ (synthetics are in labels/synthetic/)
 # Don't ignore — these are intentionally committed so Vercel can serve them.
+.vercel
