@@ -5,7 +5,7 @@ Submitted by Derek Yimoyines
 
 **Deployed URL:** https://label-verification-seven.vercel.app/
 
-**Explainer Video:** https://label-verification-seven.vercel.app/
+**Explainer Video:** https://www.loom.com/share/fd960c5f8ea44483831d4dd031289a50
 
 **Local quick start:**
 
@@ -306,16 +306,19 @@ label_verification/
 ├── README.md                       # this file
 ├── labels/
 │   ├── actual/                     # 10 real label photos for demo + tests
+│   │   └── actual_labels_manifest.json
 │   └── synthetic/                  # generated edge-case labels
+│       └── labels_manifest.json
 ├── public/
 │   ├── labels/synthetic/           # 10 synthetic distilled-spirit labels
-│   ├── labels/actual/              # 3 real photos (front + back pairs) + 4 unmapped
+│   ├── labels/actual/              # real photos (front + back pairs)
 │   └── samples/                    # downloadable from explainer page
 │       ├── sample-batch.csv
 │       └── sample-batch.json
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx                # explainer (landing)
+│   │   ├── page.tsx                # explainer (landing) — composes components below
+│   │   ├── page.css
 │   │   ├── ThemeRegistry.tsx       # MUI/emotion SSR
 │   │   ├── theme.ts                # MUI theme
 │   │   ├── layout.tsx
@@ -326,8 +329,30 @@ label_verification/
 │   │       ├── verify/route.ts
 │   │       └── batch/route.ts
 │   ├── components/
-│   │   ├── SiteHeader.tsx
-│   │   └── ResultsPanel.tsx
+│   │   ├── HeroBanner/             # hero section with headline + prototype chip
+│   │   │   ├── HeroBanner.tsx
+│   │   │   └── HeroBanner.css
+│   │   ├── QuickStartGuide/        # collapsible accordion with mode docs + video
+│   │   │   ├── QuickStartGuide.tsx
+│   │   │   └── QuickStartGuide.css
+│   │   ├── HowItWorks/             # three-step cards
+│   │   │   ├── HowItWorks.tsx
+│   │   │   └── HowItWorks.css
+│   │   ├── PathCard/               # reusable CTA card linking to a mode
+│   │   │   ├── PathCard.tsx
+│   │   │   └── PathCard.css
+│   │   ├── StartHere/              # three PathCards for sample / single / batch
+│   │   │   ├── StartHere.tsx
+│   │   │   └── StartHere.css
+│   │   ├── SampleManifests/        # download buttons for CSV/JSON batch starters
+│   │   │   ├── SampleManifests.tsx
+│   │   │   └── SampleManifests.css
+│   │   ├── SiteHeader/             # sticky app bar with nav
+│   │   │   ├── SiteHeader.tsx
+│   │   │   └── SiteHeader.css
+│   │   └── ResultsPanel/           # per-field verdict table + government warning panel
+│   │       ├── ResultsPanel.tsx
+│   │       └── ResultsPanel.css
 │   └── lib/
 │       ├── extractor/
 │       │   ├── types.ts            # Extractor interface, LabelFields
@@ -345,6 +370,54 @@ label_verification/
 └── tests/
     └── comparator.test.ts          # 18 tests
 ```
+
+---
+
+## Code organization
+
+The codebase follows a set of conventions to keep the frontend predictable and maintainable as the component count grows.
+
+### Component structure
+
+Every React component lives in its own directory under `src/components/`, containing exactly two files:
+
+```
+ComponentName/
+├── ComponentName.tsx
+└── ComponentName.css
+```
+
+This keeps markup and styling co-located without coupling them via inline styles, CSS-in-JS, or Tailwind utility classes. The directory-per-component pattern makes each component easy to find, move, or delete without hunting for scattered style fragments.
+
+### Styling approach
+
+All styling is in plain CSS files — no `sx` props, no `styled()` wrappers, no preprocessors. Class names are prefixed with the dash-case component name to avoid collisions across the app (e.g. `results-panel-verdict-chip`, `site-header-logo`). This acts as a lightweight scoping mechanism similar to CSS Modules or BEM, without adding tooling.
+
+MUI components are still used for layout primitives (`Stack`, `Container`, `Paper`) and interactive elements (`Button`, `Accordion`, `Table`), but their visual customization is done via CSS classes rather than the `sx` prop.
+
+### Function style
+
+Components and handlers use `function` declarations, not `const` arrow functions. This gives clearer stack traces during debugging and keeps a consistent style across the codebase.
+
+### Three-layer architecture
+
+The `src/` directory separates concerns into three layers:
+
+| Layer | Path | Responsibility |
+|---|---|---|
+| **Pages** | `src/app/` | Next.js App Router pages and API routes. Pages are thin — they compose components and wire data. |
+| **Components** | `src/components/` | Reusable, self-contained UI pieces. Each owns its own markup and styles. No business logic. |
+| **Lib** | `src/lib/` | Pure business logic with no React dependency. The extractor interface, comparator rules, manifest parsers, and sample data all live here. Fully unit-testable. |
+
+The `lib/` layer is further split into domains — `extractor/`, `comparator/`, `parsers/`, `samples/` — each with a clear boundary. The extractor is behind a TypeScript interface (`Extractor`) so the implementation (Gemini, mock, or a future Azure adapter) can be swapped via an environment variable without touching any UI code.
+
+### Why this matters for the prototype
+
+For a take-home project this level of structure might seem excessive. Three reasons it's deliberate:
+
+1. **Evaluator readability.** Anyone reviewing the code can find a component by name, see its styles beside it, and trace how pages compose from parts — without scrolling through a monolithic file.
+2. **Demonstrates production habits.** The conventions (scoped CSS, directory-per-component, function declarations, interface-driven lib code) are the same ones that prevent style collisions and spaghetti coupling in larger codebases.
+3. **Refactor-safe.** Moving or renaming a component means moving one directory. No scattered `import` paths, no orphaned style rules.
 
 ---
 

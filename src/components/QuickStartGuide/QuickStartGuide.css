@@ -1,0 +1,68 @@
+.quick-start-guide {
+  margin-bottom: 48px;
+  border-radius: 10px;
+}
+
+.quick-start-guide::before {
+  display: none;
+}
+
+.quick-start-guide .quick-start-guide-intro {
+  margin-bottom: 16px;
+}
+
+.quick-start-guide .quick-start-guide-list {
+  margin-bottom: 16px;
+  padding-left: 16px;
+}
+
+.quick-start-guide .quick-start-guide-list-item {
+  display: list-item;
+  list-style-type: disc;
+  padding-left: 8px;
+}
+
+.quick-start-guide .quick-start-guide-section-title {
+  margin-bottom: 8px;
+}
+
+.quick-start-guide .quick-start-guide-section-body {
+  margin-bottom: 16px;
+}
+
+.quick-start-guide .quick-start-guide-section-body-last {
+  margin-bottom: 24px;
+}
+
+.quick-start-guide .quick-start-guide-divider {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.quick-start-guide .quick-start-guide-video-header {
+  margin-bottom: 8px;
+}
+
+.quick-start-guide .quick-start-guide-video-description {
+  margin-bottom: 16px;
+}
+
+.quick-start-guide .quick-start-guide-video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px dashed;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.quick-start-guide .quick-start-guide-video-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}

@@ -1,0 +1,24 @@
+.path-card {
+  flex: 1;
+  display: flex;
+}
+
+.path-card .path-card-action-area {
+  height: 100%;
+}
+
+.path-card .path-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.path-card .path-card-body {
+  flex: 1;
+}
+
+.path-card .path-card-cta {
+  align-self: flex-start;
+  margin-top: 8px;
+}

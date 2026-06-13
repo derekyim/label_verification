@@ -1,0 +1,16 @@
+.hero-banner {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.hero-banner .hero-banner-chip {
+  margin-bottom: 16px;
+}
+
+.hero-banner .hero-banner-title {
+  margin-bottom: 16px;
+}
+
+.hero-banner .hero-banner-subtitle {
+  font-weight: 400;
+}

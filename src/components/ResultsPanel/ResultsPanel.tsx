@@ -21,6 +21,7 @@ import type { ComparisonResult, FieldStatus } from '@/lib/comparator/compare';
 import { humanFieldName } from '@/lib/comparator/compare';
 import { CANONICAL_GOVERNMENT_WARNING } from '@/lib/comparator/warning';
 import type { LabelFields } from '@/lib/extractor/types';
+import './ResultsPanel.css';
 
 export interface ResultsProps {
   fields: LabelFields;
@@ -47,15 +48,15 @@ export default function ResultsPanel(props: ResultsProps) {
   const otherRows = comparison.fields.filter((f) => f.field !== 'governmentWarning');
 
   return (
-    <Stack spacing={3}>
-      <Paper variant="outlined" sx={{ p: 3 }}>
+    <Stack spacing={3} className="results-panel">
+      <Paper variant="outlined" className="results-panel-verdict">
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} alignItems={{ md: 'center' }}>
           <Chip
             label={verdict.text}
             color={verdict.color}
-            sx={{ fontWeight: 700, fontSize: '1rem', px: 2, py: 2.5 }}
+            className="results-panel-verdict-chip"
           />
-          <Typography variant="h3" sx={{ flex: 1 }}>{verdict.detail}</Typography>
+          <Typography variant="h3" className="results-panel-verdict-detail">{verdict.detail}</Typography>
           <Stack direction="row" spacing={1}>
             <Chip size="small" label={`Model ${latencyMs} ms`} />
             <Chip size="small" label={`End-to-end ${totalMs} ms`} color={totalMs <= 5000 ? 'success' : 'warning'} />
@@ -68,10 +69,10 @@ export default function ResultsPanel(props: ResultsProps) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ width: '18%' }}>Field</TableCell>
-              <TableCell sx={{ width: '32%' }}>On the label</TableCell>
-              <TableCell sx={{ width: '32%' }}>From the application</TableCell>
-              <TableCell sx={{ width: '18%' }}>Verdict</TableCell>
+              <TableCell className="results-panel-field-col">Field</TableCell>
+              <TableCell className="results-panel-value-col">On the label</TableCell>
+              <TableCell className="results-panel-value-col">From the application</TableCell>
+              <TableCell className="results-panel-verdict-col">Verdict</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,14 +82,14 @@ export default function ResultsPanel(props: ResultsProps) {
                 <TableRow key={row.field}>
                   <TableCell>{humanFieldName(row.field)}</TableCell>
                   <TableCell>
-                    <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>{row.label || <em>—</em>}</Typography>
+                    <Typography variant="body2" className="results-panel-cell-text">{row.label || <em>—</em>}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>{row.application || <em>—</em>}</Typography>
+                    <Typography variant="body2" className="results-panel-cell-text">{row.application || <em>—</em>}</Typography>
                   </TableCell>
                   <TableCell>
                     <Chip size="small" color={meta.color} icon={meta.icon as React.ReactElement} label={meta.label} />
-                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+                    <Typography variant="caption" color="text.secondary" className="results-panel-verdict-reason">
                       {row.reason}
                     </Typography>
                   </TableCell>
@@ -99,8 +100,8 @@ export default function ResultsPanel(props: ResultsProps) {
         </Table>
       </Paper>
 
-      <Paper variant="outlined" sx={{ p: 3 }}>
-        <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+      <Paper variant="outlined" className="results-panel-warning">
+        <Stack direction="row" spacing={2} alignItems="center" className="results-panel-warning-header">
           <Typography variant="h3">Government Warning</Typography>
           <Chip
             size="small"
@@ -109,19 +110,19 @@ export default function ResultsPanel(props: ResultsProps) {
             label={STATUS_META[warningRow.status].label}
           />
         </Stack>
-        <Alert severity={warningRow.status === 'pass' ? 'success' : warningRow.status === 'skipped' ? 'info' : 'error'} sx={{ mb: 2 }}>
+        <Alert severity={warningRow.status === 'pass' ? 'success' : warningRow.status === 'skipped' ? 'info' : 'error'} className="results-panel-warning-alert">
           {warningRow.reason}
         </Alert>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-          <Box sx={{ flex: 1 }}>
+          <Box className="results-panel-warning-box">
             <Typography variant="overline" color="text.secondary">As extracted from the label</Typography>
-            <Paper variant="outlined" sx={{ p: 2, mt: 1, bgcolor: '#fafafa', fontFamily: 'monospace', fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>
+            <Paper variant="outlined" className="results-panel-warning-text">
               {warningRow.label || <em>(missing)</em>}
             </Paper>
           </Box>
-          <Box sx={{ flex: 1 }}>
+          <Box className="results-panel-warning-box">
             <Typography variant="overline" color="text.secondary">Canonical TTB warning</Typography>
-            <Paper variant="outlined" sx={{ p: 2, mt: 1, bgcolor: '#fafafa', fontFamily: 'monospace', fontSize: '0.85rem', whiteSpace: 'pre-wrap' }}>
+            <Paper variant="outlined" className="results-panel-warning-text">
               {CANONICAL_GOVERNMENT_WARNING}
             </Paper>
           </Box>
@@ -129,7 +130,7 @@ export default function ResultsPanel(props: ResultsProps) {
       </Paper>
 
       <Divider />
-      <Typography variant="caption" color="text.secondary">
+      <Typography variant="caption" color="text.secondary" className="results-panel-footer">
         Extraction is performed by a vision-language model. The pass/fail decision is made by
         deterministic TypeScript in <code>src/lib/comparator/</code>, not by the model.
       </Typography>

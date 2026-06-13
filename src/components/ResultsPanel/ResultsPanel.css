@@ -1,0 +1,63 @@
+.results-panel .results-panel-verdict {
+  padding: 24px;
+}
+
+.results-panel .results-panel-verdict-chip {
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 20px 16px;
+}
+
+.results-panel .results-panel-verdict-detail {
+  flex: 1;
+}
+
+.results-panel .results-panel-field-col {
+  width: 18%;
+}
+
+.results-panel .results-panel-value-col {
+  width: 32%;
+}
+
+.results-panel .results-panel-verdict-col {
+  width: 18%;
+}
+
+.results-panel .results-panel-cell-text {
+  word-break: break-word;
+}
+
+.results-panel .results-panel-verdict-reason {
+  display: block;
+  margin-top: 4px;
+}
+
+.results-panel .results-panel-warning {
+  padding: 24px;
+}
+
+.results-panel .results-panel-warning-header {
+  margin-bottom: 16px;
+}
+
+.results-panel .results-panel-warning-alert {
+  margin-bottom: 16px;
+}
+
+.results-panel .results-panel-warning-box {
+  flex: 1;
+}
+
+.results-panel .results-panel-warning-text {
+  padding: 16px;
+  margin-top: 8px;
+  background-color: #fafafa;
+  font-family: monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+.results-panel .results-panel-footer {
+  margin-top: 4px;
+}

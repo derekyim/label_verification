@@ -1,0 +1,16 @@
+.how-it-works {
+  margin-bottom: 48px;
+}
+
+.how-it-works .how-it-works-title {
+  margin-bottom: 24px;
+}
+
+.how-it-works .how-it-works-card {
+  padding: 24px;
+  flex: 1;
+}
+
+.how-it-works .how-it-works-card-title {
+  margin-bottom: 8px;
+}

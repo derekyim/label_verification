@@ -1,0 +1,23 @@
+.site-header {
+  border-bottom: 1px solid #e0dcd2;
+}
+
+.site-header .site-header-toolbar {
+  gap: 16px;
+}
+
+.site-header .site-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header .site-header-logo-text {
+  font-weight: 700;
+}
+
+.site-header .site-header-spacer {
+  flex: 1;
+}

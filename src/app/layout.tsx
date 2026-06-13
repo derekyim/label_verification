@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ThemeRegistry from './ThemeRegistry';
-import SiteHeader from '@/components/SiteHeader';
+import SiteHeader from '@/components/SiteHeader/SiteHeader';
 
 export const metadata: Metadata = {
   title: 'Alcohol Label Verification (Demo) — TTB Alcohol Label Verification',

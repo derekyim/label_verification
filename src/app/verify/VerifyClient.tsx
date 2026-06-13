@@ -18,7 +18,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { SAMPLE_LABELS, findSample } from '@/lib/samples/expected';
 import type { LabelFields } from '@/lib/extractor/types';
 import { EMPTY_FIELDS } from '@/lib/extractor/types';
-import ResultsPanel from '@/components/ResultsPanel';
+import ResultsPanel from '@/components/ResultsPanel/ResultsPanel';
 import type { ComparisonResult } from '@/lib/comparator/compare';
 
 interface VerifyResponse {
