@@ -1,0 +1,72 @@
+[
+  {
+    "file": "01_old_tom_bourbon",
+    "brand": "OLD TOM DISTILLERY",
+    "cls": "Kentucky Straight Bourbon Whiskey",
+    "abv": "45% Alc./Vol. (90 Proof)",
+    "net": "750 mL"
+  },
+  {
+    "file": "02_northwind_gin",
+    "brand": "NORTHWIND",
+    "cls": "London Dry Gin",
+    "abv": "47% Alc./Vol. (94 Proof)",
+    "net": "700 mL"
+  },
+  {
+    "file": "03_crystal_meridian_vodka",
+    "brand": "CRYSTAL MERIDIAN",
+    "cls": "Premium Vodka",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net": "1 L"
+  },
+  {
+    "file": "04_isla_vieja_tequila",
+    "brand": "ISLA VIEJA",
+    "cls": "Tequila A\u00f1ejo",
+    "abv": "38% Alc./Vol. (76 Proof)",
+    "net": "750 mL"
+  },
+  {
+    "file": "05_barrel_oak_rye",
+    "brand": "BARREL & OAK",
+    "cls": "Straight Rye Whiskey",
+    "abv": "50% Alc./Vol. (100 Proof)",
+    "net": "750 mL"
+  },
+  {
+    "file": "06_glen_carrick_scotch",
+    "brand": "GLEN CARRICK",
+    "cls": "Single Malt Scotch Whisky",
+    "abv": "43% Alc./Vol. (86 Proof)",
+    "net": "700 mL"
+  },
+  {
+    "file": "07_cane_compass_rum",
+    "brand": "CANE & COMPASS",
+    "cls": "Aged Caribbean Rum",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net": "750 mL"
+  },
+  {
+    "file": "08_maison_lumiere_cognac",
+    "brand": "MAISON LUMI\u00c8RE",
+    "cls": "Cognac V.S.O.P.",
+    "abv": "40% Alc./Vol. (80 Proof)",
+    "net": "700 mL"
+  },
+  {
+    "file": "09_hollow_creek_brandy",
+    "brand": "HOLLOW CREEK",
+    "cls": "Small Batch Apple Brandy",
+    "abv": "42% Alc./Vol. (84 Proof)",
+    "net": "375 mL"
+  },
+  {
+    "file": "10_velvet_thorn_liqueur",
+    "brand": "VELVET THORN",
+    "cls": "Blackberry Liqueur",
+    "abv": "20% Alc./Vol. (40 Proof)",
+    "net": "500 mL"
+  }
+]

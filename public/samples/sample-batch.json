@@ -1,0 +1,43 @@
+[
+  {
+    "image_filename": "01_old_tom_bourbon.png",
+    "brand": "OLD TOM DISTILLERY",
+    "classType": "Kentucky Straight Bourbon Whiskey",
+    "alcoholContent": "45% Alc./Vol. (90 Proof)",
+    "netContents": "750 mL",
+    "bottlerProducer": "Old Tom Distilling Co.",
+    "countryOfOrigin": "Bardstown, Kentucky",
+    "governmentWarning": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  {
+    "image_filename": "02_northwind_gin.png",
+    "brand": "NORTHWIND",
+    "classType": "London Dry Gin",
+    "alcoholContent": "47% Alc./Vol. (94 Proof)",
+    "netContents": "700 mL",
+    "bottlerProducer": "The Northwind Gin Works",
+    "countryOfOrigin": "Portland, Oregon",
+    "governmentWarning": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  {
+    "image_filename": "05_barrel_oak_rye.png",
+    "brand": "BARREL & OAK",
+    "classType": "Straight Rye Whiskey",
+    "alcoholContent": "50% Alc./Vol. (100 Proof)",
+    "netContents": "750 mL",
+    "bottlerProducer": "Barrel & Oak Co.",
+    "countryOfOrigin": "Hudson Valley, New York",
+    "governmentWarning": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  {
+    "image_filename": "IMG_1378.jpeg",
+    "back_image_filename": "IMG_1379.jpeg",
+    "brand": "Goslings",
+    "classType": "Bermuda Black Rum (Black Seal)",
+    "alcoholContent": "40% Alc./Vol. (80 Proof)",
+    "netContents": "750 mL",
+    "bottlerProducer": "",
+    "countryOfOrigin": "",
+    "governmentWarning": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  }
+]
