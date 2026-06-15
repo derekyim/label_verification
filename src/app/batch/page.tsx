@@ -116,9 +116,20 @@ export default function BatchPage() {
   return (
     <Container maxWidth="lg" className="batch-page">
       <Typography variant="h2" className="batch-page-title">Batch verification</Typography>
-      <Typography color="text.secondary" className="batch-page-subtitle">
+      <Typography color="text.secondary" className="batch-page-subtitle" component="div">
         Paste or upload a CSV / JSON manifest. Each row references an image by filename.
         Up to {MAX_ROWS} labels per batch.
+        <br /><br />
+        <strong>TO TEST:</strong>
+        <br />
+        Step 1: Download and paste the JSON manifest (use the &ldquo;sample JSON&rdquo; link)
+        <br />
+        Step 2: Click the "Parse Manifest" button
+        <br />
+        Step 3: Click the "Verify" button
+        <br /><br />
+        You can optionally use the &ldquo;sample Images&rdquo; download button and the &ldquo;Upload Images&rdquo;
+        tab to upload the test files to batch mode and then click the "Verify" button to verify the batch.
       </Typography>
 
       <BatchManifestInput

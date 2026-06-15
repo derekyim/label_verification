@@ -29,7 +29,8 @@ export default function StartHere() {
           href="/batch"
           icon={<LayersIcon fontSize="large" color="primary" />}
           title="Batch mode"
-          body="Paste or upload a CSV or JSON manifest. Results table with CSV export. Up to 25 labels per batch. (if using in Demo mode, please use the download sample JSON and sample Images links to download the test files and then re-upload them to the batch mode)"
+          body="Paste or upload a CSV or JSON manifest. Results table with CSV export. Up to 25 labels per batch."
+        
           cta="Open batch"
         />
       </Stack>
