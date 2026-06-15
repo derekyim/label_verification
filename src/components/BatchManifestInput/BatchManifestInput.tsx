@@ -73,6 +73,7 @@ export default function BatchManifestInput({
           <Box className="batch-manifest-input-spacer" />
           <MuiLink href="/samples/sample-batch.csv" download>sample CSV</MuiLink>
           <MuiLink href="/samples/sample-batch.json" download>sample JSON</MuiLink>
+          <MuiLink href="/samples/sample-images.zip" download>sample Images</MuiLink>
         </Stack>
         <TextField
           multiline
