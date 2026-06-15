@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getExtractor, GeminiError } from '@/lib/extractor';
 import { compareLabelToApplication } from '@/lib/comparator/compare';
 import type { LabelFields, LabelImage } from '@/lib/extractor/types';
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
+import { loadPublicImage } from '@/lib/images/loadPublicImage';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -92,16 +91,8 @@ async function loadSample(
 
 async function readPublicImage(samplePath: string, kind: 'front' | 'back'): Promise<LabelImage> {
   if (!samplePath.startsWith('/labels/')) throw new Error('samplePath must be under /labels/');
-  const safe = path.normalize(samplePath).replace(/^\/+/, '');
-  if (safe.includes('..')) throw new Error('Invalid samplePath.');
-  const abs = path.join(process.cwd(), 'public', safe);
-  const bytes = await fs.readFile(abs);
-  const mimeType = abs.endsWith('.png')
-    ? 'image/png'
-    : abs.endsWith('.jpg') || abs.endsWith('.jpeg')
-    ? 'image/jpeg'
-    : 'application/octet-stream';
-  return { bytes: new Uint8Array(bytes), mimeType, kind };
+  const { bytes, mimeType } = await loadPublicImage(samplePath);
+  return { bytes, mimeType, kind };
 }
 
 export async function POST(

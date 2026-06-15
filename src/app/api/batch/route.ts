@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getExtractor, GeminiError } from '@/lib/extractor';
 import { compareLabelToApplication, type ComparisonResult } from '@/lib/comparator/compare';
 import type { LabelFields, LabelImage } from '@/lib/extractor/types';
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
+import { loadPublicImage } from '@/lib/images/loadPublicImage';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -55,20 +54,11 @@ async function loadOne(
   const rel = filename.startsWith('/') ? filename.slice(1) : filename;
   if (rel.includes('..')) throw new Error('Invalid image path.');
   const candidates = rel.startsWith('labels/')
-    ? [path.join(process.cwd(), 'public', rel)]
-    : [
-        path.join(process.cwd(), 'public', 'labels', 'synthetic', rel),
-        path.join(process.cwd(), 'public', 'labels', 'actual', rel),
-      ];
-  for (const abs of candidates) {
+    ? [rel]
+    : [`labels/synthetic/${rel}`, `labels/actual/${rel}`];
+  for (const candidate of candidates) {
     try {
-      const bytes = await fs.readFile(abs);
-      const m = abs.endsWith('.png')
-        ? 'image/png'
-        : abs.endsWith('.jpg') || abs.endsWith('.jpeg')
-        ? 'image/jpeg'
-        : 'application/octet-stream';
-      return { bytes: new Uint8Array(bytes), mimeType: m };
+      return await loadPublicImage(candidate);
     } catch {
       continue;
     }
