@@ -124,12 +124,12 @@ export default function BatchPage() {
         <br />
         Step 1: Download and paste the JSON manifest (use the &ldquo;sample JSON&rdquo; link)
         <br />
-        Step 2: Click the "Parse Manifest" button
+        Step 2: Click the &ldquo;Parse Manifest&rdquo; button
         <br />
-        Step 3: Click the "Verify" button
+        Step 3: Click the &ldquo;Verify&rdquo; button
         <br /><br />
         You can optionally use the &ldquo;sample Images&rdquo; download button and the &ldquo;Upload Images&rdquo;
-        tab to upload the test files to batch mode and then click the "Verify" button to verify the batch.
+        tab to upload the test files to batch mode and then click the &ldquo;Verify&rdquo; button to verify the batch.
       </Typography>
 
       <BatchManifestInput
@@ -146,7 +146,7 @@ export default function BatchPage() {
         tab={tab}
         onTabChange={setTab}
         rows={rows}
-        uploadedImages={uploadedImages}
+        uploadedImages={uploadedImages || {}}
         onUploadedImagesChange={setUploadedImages}
       />
 
