@@ -1,0 +1,12 @@
+.verify-form-panel {
+  padding: 24px;
+  flex: 1;
+}
+
+.verify-form-panel .verify-form-panel-title {
+  margin-bottom: 16px;
+}
+
+.verify-form-panel .verify-form-panel-hint {
+  margin-bottom: 16px;
+}

@@ -1,0 +1,16 @@
+.batch-manifest-input {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.batch-manifest-input .batch-manifest-input-spacer {
+  flex: 1;
+}
+
+.batch-manifest-input .batch-manifest-input-textarea {
+  font-family: monospace;
+}
+
+.batch-manifest-input .batch-manifest-input-footer-spacer {
+  flex: 1;
+}

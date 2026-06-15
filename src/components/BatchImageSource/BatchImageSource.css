@@ -1,0 +1,14 @@
+.batch-image-source {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.batch-image-source .batch-image-source-tab-content {
+  padding-top: 16px;
+}
+
+.batch-image-source .batch-image-source-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}

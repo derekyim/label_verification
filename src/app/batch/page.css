@@ -1,0 +1,20 @@
+.batch-page {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.batch-page .batch-page-title {
+  margin-bottom: 8px;
+}
+
+.batch-page .batch-page-subtitle {
+  margin-bottom: 24px;
+}
+
+.batch-page .batch-page-actions {
+  margin-bottom: 24px;
+}
+
+.batch-page .batch-page-error {
+  margin-bottom: 24px;
+}

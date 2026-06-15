@@ -1,0 +1,32 @@
+.verify-client {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.verify-client .verify-client-title {
+  margin-bottom: 8px;
+}
+
+.verify-client .verify-client-subtitle {
+  margin-bottom: 32px;
+}
+
+.verify-client .verify-client-columns {
+  margin-bottom: 32px;
+}
+
+.verify-client .verify-client-image-column {
+  flex: 1;
+}
+
+.verify-client .verify-client-actions {
+  margin-bottom: 24px;
+}
+
+.verify-client .verify-client-error {
+  margin-bottom: 24px;
+}
+
+.verify-client .verify-client-results-title {
+  margin-bottom: 24px;
+}

@@ -1,0 +1,8 @@
+.batch-results-table .batch-results-table-summary {
+  padding: 16px;
+  border-bottom: 1px solid #e0dcd2;
+}
+
+.batch-results-table .batch-results-table-summary-spacer {
+  flex: 1;
+}
